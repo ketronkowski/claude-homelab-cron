@@ -18,7 +18,7 @@ else
   kubectl get nodes -o json 2>/dev/null | jq -r '
     .items[] |
     . as $n |
-    ($n.status.conditions[] | select(.type != "Ready" and .status == "True")) |
+    ($n.status.conditions[] | select(.type != "Ready" and .type != "EtcdIsVoter" and .status == "True")) |
     "  WARNING: \($n.metadata.name) has condition \(.type)=True"
   ' 2>/dev/null || true
 fi
