@@ -29,6 +29,7 @@ echo "=== PODS WITH ISSUES (non-Running/Succeeded or restarts > 5) ==="
 POD_ISSUES=$(kubectl get pods -A --no-headers 2>/dev/null | awk '
 {
   ns=$1; name=$2; status=$4; restarts=int($5)
+  if (ns == "homelab-cron") next
   if (status != "Running" && status != "Completed" && status != "Succeeded" && status != "Terminating")
     printf "  NON-RUNNING: %s/%s (phase=%s)\n", ns, name, status
   else if (restarts > 5)
