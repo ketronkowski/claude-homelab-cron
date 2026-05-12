@@ -38,8 +38,8 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # claude --dangerously-skip-permissions refuses to run as root
-RUN useradd -m -u 1000 claude
-USER claude
+# node:22-slim already has a non-root 'node' user (uid 1000)
+USER node
 
 ENV TASK_PROMPT=/tasks/homelab-health/prompt.txt
 
