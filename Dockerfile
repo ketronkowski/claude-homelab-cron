@@ -34,7 +34,7 @@ RUN curl -sSL "https://github.com/argoproj/argo-cd/releases/latest/download/argo
 # Claude Code CLI
 RUN npm install -g @anthropic-ai/claude-code
 
-COPY tasks/ /tasks/
+COPY tasks/run_ollama.py /tasks/run_ollama.py
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
