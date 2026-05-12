@@ -37,6 +37,10 @@ COPY tasks/ /tasks/
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+# claude --dangerously-skip-permissions refuses to run as root
+RUN useradd -m -u 1000 claude
+USER claude
+
 ENV TASK_PROMPT=/tasks/homelab-health/prompt.txt
 
 ENTRYPOINT ["/entrypoint.sh"]
