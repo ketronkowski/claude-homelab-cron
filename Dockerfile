@@ -42,6 +42,6 @@ RUN chmod +x /entrypoint.sh
 # node:22-slim already has a non-root 'node' user (uid 1000)
 USER node
 
-ENV TASK_PROMPT=/tasks/homelab-health/prompt.txt
+ENV TASK_DIR=/tasks/homelab-health
 
 ENTRYPOINT ["/entrypoint.sh"]
