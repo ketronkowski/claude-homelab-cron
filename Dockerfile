@@ -17,7 +17,8 @@ ENV PATH="/opt/venv/bin:$PATH"
 RUN pip install --no-cache-dir \
     google-auth \
     google-auth-httplib2 \
-    google-api-python-client
+    google-api-python-client \
+    openai
 
 # kubectl
 RUN KUBECTL_VERSION=$(curl -sSL https://dl.k8s.io/release/stable.txt) && \
