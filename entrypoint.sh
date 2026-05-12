@@ -1,3 +1,11 @@
 #!/bin/bash
 set -euo pipefail
-exec claude -p "$(cat "$TASK_PROMPT")" --allowedTools bash --dangerously-skip-permissions --bare
+
+HEALTH_DATA=$(bash /tasks/homelab-health/collect.sh 2>&1)
+
+PROMPT="$(cat "$TASK_PROMPT")
+
+--- HEALTH DATA ---
+$HEALTH_DATA"
+
+exec claude -p "$PROMPT" --allowedTools bash --dangerously-skip-permissions --bare
